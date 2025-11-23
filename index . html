@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Khalid: Concept Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff4ef;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #2d3748;
+        }
+
+        /* Card Styling */
+        .concept-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Colors per Category */
+        .header-risk { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #991b1b; }
+        .header-symptom { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e; }
+        .header-anatomy { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); color: #1e40af; }
+        .header-diagnosis { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #065f46; }
+        .header-patient { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); color: #9a3412; }
+
+        /* The Connector Logic */
+        /* When a specific ID is active, highlight the related cards */
+        .highlight-risk { border-color: #ef4444 !important; background-color: #fef2f2; }
+        .highlight-symptom { border-color: #f59e0b !important; background-color: #fffbeb; }
+        .highlight-anatomy { border-color: #3b82f6 !important; background-color: #eff6ff; }
+        
+        /* Accordion Styling */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] > summary .chevron {
+            transform: rotate(180deg);
+        }
+        
+        /* Custom Scrollbar for longer content */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <!-- Top Navigation / Legend -->
+    <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Mr. Khalid: Connecting the Dots</h1>
+            <p class="text-gray-600">Hover over the <strong>Risk Factors</strong> to see their physiological consequences.</p>
+        </div>
+        <div class="flex gap-2 text-sm">
+            <span class="px-3 py-1 rounded-full bg-red-100 text-red-800 font-medium">Risk Factors</span>
+            <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 font-medium">Symptoms</span>
+            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-medium">Anatomy & Phys</span>
+            <span class="px-3 py-1 rounded-full bg-green-100 text-green-800 font-medium">Diagnosis</span>
+        </div>
+    </header>
+
+    <!-- Main Grid Layout -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        <!-- 1. PATIENT PROFILE (Center Focus) -->
+        <div class="md:col-span-3 lg:col-span-2 concept-card border-l-4 border-orange-400">
+            <div class="p-6 header-patient flex justify-between items-start">
+                <div>
+                    <h2 class="text-2xl font-bold">Mr. Khalid</h2>
+                    <p class="font-medium opacity-75">47 y/o Sales Manager</p>
+                </div>
+                <i class="fas fa-user-tie text-4xl opacity-50"></i>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Chief Complaint</span>
+                        <p class="font-semibold text-gray-800">Worsening Epigastric Pain (1 week)</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <span class="text-xs font-bold text-gray-400 uppercase">History</span>
+                        <p class="font-semibold text-gray-800">Intermittent "Burning" (1 year)</p>
+                    </div>
+                </div>
+                <div class="mt-4 p-4 bg-orange-50 rounded border border-orange-100 text-sm text-orange-800">
+                    <strong>The Trigger:</strong> An employer requested a medical report due to frequent medical leave. <br>
+                    <em>Ethics Note: Requires patient consent before release.</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. DIAGNOSTIC DEDUCTION (Top Right) -->
+        <div class="md:col-span-3 lg:col-span-2 concept-card">
+            <div class="p-4 header-diagnosis flex justify-between items-center">
+                <h3 class="font-bold text-lg">Diagnostic Deduction</h3>
+                <i class="fas fa-clipboard-check opacity-50"></i>
+            </div>
+            <div class="p-4 space-y-3">
+                <details class="group bg-white border border-gray-100 rounded-lg p-2">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer text-green-700">
+                        <span>Why Peptic Ulcer Disease (PUD)?</span>
+                        <i class="fas fa-chevron-down chevron text-xs transition-transform"></i>
+                    </summary>
+                    <div class="mt-2 text-sm text-gray-600 pl-2 border-l-2 border-green-200">
+                        Combines Age (47), Risk (Smoker/Stress), and specific "Burning" pain pattern.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-100 rounded-lg p-2">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer text-green-700">
+                        <span>Why Gastric (Not Duodenal)?</span>
+                        <i class="fas fa-chevron-down chevron text-xs transition-transform"></i>
+                    </summary>
+                    <div class="mt-2 text-sm text-gray-600 pl-2 border-l-2 border-green-200">
+                        <strong>Key: Timing.</strong> Pain ½ - 1 hour after eating. <br>
+                        <em>Duodenal:</em> Pain is relieved by food, returns 2-5 hours later.
+                    </div>
+                </details>
+
+                <div class="flex gap-2 mt-2">
+                    <span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded">Rule Out: Cardiac (ECG Normal)</span>
+                    <span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded">Rule Out: Pancreatitis (Amylase Normal)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. RISK FACTORS (Left Column - The "Causes") -->
+        <div class="md:col-span-1 lg:col-span-1 flex flex-col gap-4">
+            <!-- Card: Smoker -->
+            <div class="concept-card cursor-pointer group" onmouseenter="highlight('defense')" onmouseleave="removeHighlight('defense')">
+                <div class="p-3 header-risk flex justify-between items-center">
+                    <h4 class="font-bold">Chronic Smoker</h4>
+                    <i class="fas fa-smoking opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p class="mb-2">Affects mucosal blood flow.</p>
+                    <p class="text-xs text-red-500 font-semibold"><i class="fas fa-link mr-1"></i>Hovers links to: Mucosal Defense</p>
+                </div>
+            </div>
+
+            <!-- Card: Stress -->
+            <div class="concept-card cursor-pointer group" onmouseenter="highlight('motility')" onmouseleave="removeHighlight('motility')">
+                <div class="p-3 header-risk flex justify-between items-center">
+                    <h4 class="font-bold">Occupational Stress</h4>
+                    <i class="fas fa-briefcase opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p class="mb-2">Sympathetic activity ↑</p>
+                    <p class="text-xs text-red-500 font-semibold"><i class="fas fa-link mr-1"></i>Hovers links to: Motility & Acid</p>
+                </div>
+            </div>
+
+            <!-- Card: Diet -->
+            <div class="concept-card cursor-pointer group" onmouseenter="highlight('acid')" onmouseleave="removeHighlight('acid')">
+                <div class="p-3 header-risk flex justify-between items-center">
+                    <h4 class="font-bold">Irregular Meals</h4>
+                    <i class="fas fa-hamburger opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p class="mb-2">Fast food & Coffee dependency.</p>
+                    <p class="text-xs text-red-500 font-semibold"><i class="fas fa-link mr-1"></i>Hovers links to: Acid Secretion</p>
+                </div>
+            </div>
+
+            <!-- Card: Blood Group -->
+            <div class="concept-card cursor-pointer">
+                <div class="p-3 header-risk flex justify-between items-center">
+                    <h4 class="font-bold">Blood Group O+</h4>
+                    <i class="fas fa-dna opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p>Genetic susceptibility to <em>H. pylori</em> attachment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ANATOMY & PHYSIOLOGY (Middle Column - The "Mechanism") -->
+        <div class="md:col-span-1 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Anatomy Map -->
+            <div class="col-span-2 concept-card">
+                <div class="p-3 header-anatomy flex justify-between items-center">
+                    <h3 class="font-bold">Anatomy: Epigastrium</h3>
+                    <i class="fas fa-map-marker-alt opacity-50"></i>
+                </div>
+                <div class="p-4">
+                    <div class="text-sm space-y-3">
+                        <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                            <p class="mb-1"><strong>Region:</strong> 9-Region Abdominal Map (Epigastrium)</p>
+                            <p><strong>Contents:</strong> Stomach, Liver (Left Lobe), Duodenum, Pancreas.</p>
+                        </div>
+                        <p><strong>Finding:</strong> "Vague Tenderness" on deep palpation.</p>
+                        <p class="text-xs bg-gray-100 p-2 rounded text-gray-600 border-l-4 border-gray-400">
+                            <strong>Note:</strong> No rigidity/rebound = No Peritonism (Ulcer hasn't perforated).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patho: Defense -->
+            <div id="card-defense" class="concept-card border-l-4 border-blue-400 transition-colors duration-300">
+                <div class="p-3 bg-gray-50 border-b flex justify-between items-center">
+                    <h4 class="font-bold text-blue-900">Mucosal Defense</h4>
+                    <i class="fas fa-shield-virus opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm">
+                    <p><strong>Normal:</strong> Mucus + Bicarb layer protects stomach wall.</p>
+                    <p><strong>Pathology:</strong> Smoking causes ischemia (low blood flow) -> Weakens barrier.</p>
+                </div>
+            </div>
+
+            <!-- Patho: Motility/Acid -->
+            <div id="card-motility" class="concept-card border-l-4 border-blue-400 transition-colors duration-300">
+                <div class="p-3 bg-gray-50 border-b flex justify-between items-center">
+                    <h4 class="font-bold text-blue-900">Motility & Acid</h4>
+                    <i class="fas fa-running opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm">
+                    <p><strong>Stress:</strong> ↑ Sympathetic activity.</p>
+                    <p><strong>Result:</strong> Altered motility + Increased gastric acid secretion.</p>
+                </div>
+            </div>
+
+            <!-- Patho: Acid Secretion -->
+            <div id="card-acid" class="concept-card border-l-4 border-blue-400 transition-colors duration-300">
+                <div class="p-3 bg-gray-50 border-b flex justify-between items-center">
+                    <h4 class="font-bold text-blue-900">Acid Secretion</h4>
+                    <i class="fas fa-flask opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm">
+                    <p><strong>Diet:</strong> Coffee stimulates Gastrin.</p>
+                    <p><strong>Timing:</strong> Eating triggers "Gastric Phase" (Max Acid) -> Pain ½ hr later.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5. CLINICAL SIGNS (Right Column - The "Result") -->
+        <div class="md:col-span-1 lg:col-span-1 flex flex-col gap-4">
+            
+            <div class="concept-card">
+                <div class="p-3 header-symptom flex justify-between items-center">
+                    <h4 class="font-bold">"Burning" Pain</h4>
+                    <i class="fas fa-fire opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p>Chemical irritation of submucosal nerves by HCl.</p>
+                    <p class="mt-2 text-xs font-bold text-yellow-800">½ - 1 Hr After Meal</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="p-3 header-symptom flex justify-between items-center">
+                    <h4 class="font-bold">Weight Loss</h4>
+                    <i class="fas fa-weight opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p><strong>Sitophobia:</strong> Patient is scared to eat because eating causes pain.</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="p-3 header-symptom flex justify-between items-center">
+                    <h4 class="font-bold">Nausea/Vomit</h4>
+                    <i class="fas fa-head-side-cough opacity-50"></i>
+                </div>
+                <div class="p-3 text-sm text-gray-700">
+                    <p>Gastric irritation stimulates vagal afferents.</p>
+                    <p class="mt-2 text-xs bg-yellow-50 p-1 rounded">Vomiting often relieves the pain (removes acid).</p>
+                </div>
+            </div>
+
+            <!-- Negative Findings -->
+            <div class="concept-card opacity-75 hover:opacity-100">
+                <div class="p-3 bg-gray-100 border-b flex justify-between items-center">
+                    <h4 class="font-bold text-gray-600">Negative Findings</h4>
+                    <i class="fas fa-minus-circle opacity-50"></i>
+                </div>
+                <ul class="p-3 text-xs text-gray-600 space-y-2 list-disc list-inside">
+                    <li>No Pallor (Not Anemic)</li>
+                    <li>No Jaundice (Liver OK)</li>
+                    <li>No Melena (No severe bleed)</li>
+                    <li>Temp 37°C (No Infection)</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Legend -->
+    <footer class="max-w-7xl mx-auto mt-8 text-center text-gray-500 text-sm">
+        <p>Concept Map generated for PBL Case Discussion. Icons represent key domains.</p>
+    </footer>
+
+    <script>
+        // Simple Link Logic: When hovering a Cause, highlight the Mechanism
+        function highlight(targetId) {
+            const element = document.getElementById('card-' + targetId);
+            if (element) {
+                element.classList.remove('border-blue-400'); // Remove default border
+                element.classList.add('highlight-risk'); // Add highlight style
+                element.classList.add('ring-2');
+                element.classList.add('ring-red-400');
+            }
+        }
+
+        function removeHighlight(targetId) {
+            const element = document.getElementById('card-' + targetId);
+            if (element) {
+                element.classList.remove('highlight-risk');
+                element.classList.remove('ring-2');
+                element.classList.remove('ring-red-400');
+                element.classList.add('border-blue-400'); // Restore default
+            }
+        }
+    </script>
+</body>
+</html>
